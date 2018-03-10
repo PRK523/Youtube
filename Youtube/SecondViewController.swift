@@ -13,11 +13,16 @@ import GoogleSignIn
 
 class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDelegate, UITableViewDataSource, VideoModelDelegate {
     
-    
     @IBOutlet weak var tableView: UITableView!
     var videos: [Video] = [Video]()
     var selectedVideo: Video?
     var model: VideoModel = VideoModel()
+    /*Search bar
+    var searchController = UISearchController()
+    var resultController = UITableViewController()
+    
+    //Search bar array
+    var filteredArray = [Video]()*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,12 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         model.getFeedVideos()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        /*searchController = UISearchController(searchResultsController: resultController)
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchResultsUpdater = self
+        resultController.tableView.delegate = self
+        resultController.tableView.dataSource = self*/
         
     }
     
@@ -37,6 +48,17 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         //tell the tableView to reload
         self.tableView.reloadData()
     }
+    
+    /*func updateSearchResults(for searchController: UISearchController) {
+        filteredArray = videos.filter({ (video: String)  -> Bool in
+        if videos.contains(searchController.searchBar.text) {
+            return true
+            }
+            else{
+            return false
+            }
+        })
+    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //Calculate height of row by getting width of screen
