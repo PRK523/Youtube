@@ -15,5 +15,4 @@ class Video: NSObject {
     var videoDescription: String = ""
     var videoThumbNailUrl:  String = ""
     var playlistId: String = ""
-
 }
