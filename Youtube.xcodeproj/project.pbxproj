@@ -113,6 +113,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6B4F3E2A2067076100D8AAE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8F742205197C000408F78 /* VideoModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6B4F3E2B2067078D00D8AAE5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8F744205202F900408F78 /* Video.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6B4F3E2E2067081200D8AAE5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6BC8F70A20505F8000408F78 /* ViewController.swift */,
+				6BC8F740205092DB00408F78 /* SecondViewController.swift */,
+				6BC8F74620521AFC00408F78 /* VideoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		6BC8F6FC20505F8000408F78 = {
 			isa = PBXGroup;
 			children = (
@@ -138,13 +164,11 @@
 		6BC8F70720505F8000408F78 /* Youtube */ = {
 			isa = PBXGroup;
 			children = (
-				6BC8F70820505F8000408F78 /* AppDelegate.swift */,
-				6BC8F742205197C000408F78 /* VideoModel.swift */,
-				6BC8F744205202F900408F78 /* Video.swift */,
-				6BC8F70A20505F8000408F78 /* ViewController.swift */,
-				6BC8F740205092DB00408F78 /* SecondViewController.swift */,
-				6BC8F74620521AFC00408F78 /* VideoViewController.swift */,
+				6B4F3E2A2067076100D8AAE5 /* Model */,
+				6B4F3E2B2067078D00D8AAE5 /* View */,
+				6B4F3E2E2067081200D8AAE5 /* Controller */,
 				6BC8F70C20505F8000408F78 /* Main.storyboard */,
+				6BC8F70820505F8000408F78 /* AppDelegate.swift */,
 				6BC8F71120505F8000408F78 /* LaunchScreen.storyboard */,
 				6BC8F71420505F8000408F78 /* Info.plist */,
 				6BC8F7382050605B00408F78 /* GoogleService-Info-2.plist */,

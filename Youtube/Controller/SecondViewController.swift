@@ -112,6 +112,8 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         self.selectedVideo = self.videos[indexPath.row]
         
         self.performSegue(withIdentifier: "videoSegue", sender: self)
+        //let videoLauncher = VideoLauncher()
+        //videoLauncher.showVideoPlayer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

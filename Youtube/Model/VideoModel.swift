@@ -17,7 +17,7 @@ class VideoModel: NSObject {
     
     
     let API_KEY = "AIzaSyAKYxf9GFeU3aBpD_RHa__1KNZDui0fZO8"
-    let CHANNEL_ID = "UCfsZ89oTD7mxkF6aiuLXk0g"
+    let CHANNEL_ID = "UC6-UA1FoMnbO2LCLWPCM9aA"
     
     var videoArray = [Video]()
     
@@ -28,7 +28,7 @@ class VideoModel: NSObject {
      //Fetch the videos dynamically from Youtube API
     
         
-        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems", method: HTTPMethod.get, parameters: ["part":"snippet", "playlistId":"PLfJWzNdzFW8k4xMWfrbN7UTXU1FnOIqEX","key": API_KEY, "channelId": CHANNEL_ID, "maxResults": 20], encoding: URLEncoding.default, headers: nil).responseJSON {(response) in
+        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems", method: HTTPMethod.get, parameters: ["part":"snippet", "playlistId":"PLiRG83hKoub8soaZdrLI2CEqU4P5-W39s","key": API_KEY, "channelId": CHANNEL_ID, "maxResults": 20], encoding: URLEncoding.default, headers: nil).responseJSON {(response) in
         print(response)
      
         if let JSON = response.result.value {
