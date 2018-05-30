@@ -48,7 +48,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VP5-mR-Bbq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="190.66666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

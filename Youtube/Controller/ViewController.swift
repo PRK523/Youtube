@@ -25,7 +25,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate {
         
         view.addSubview(signInButton)
         
-        GIDSignIn.sharedInstance().signOut()
+        //GIDSignIn.sharedInstance().signOut()
     }
 
     override func viewDidAppear(_ animated: Bool) {

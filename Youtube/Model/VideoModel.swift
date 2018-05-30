@@ -23,12 +23,12 @@ class VideoModel: NSObject {
     
     var delegate: VideoModelDelegate?
      
-     func getFeedVideos() {
+     func getFeedVideos(){
      
      //Fetch the videos dynamically from Youtube API
     
         
-        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems", method: HTTPMethod.get, parameters: ["part":"snippet", "playlistId":"PLiRG83hKoub8soaZdrLI2CEqU4P5-W39s","key": API_KEY, "channelId": CHANNEL_ID, "maxResults": 20], encoding: URLEncoding.default, headers: nil).responseJSON {(response) in
+        Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems", method: HTTPMethod.get, parameters: ["part":"snippet", "playlistId":"PLiRG83hKoub8soaZdrLI2CEqU4P5-W39s","key": API_KEY, "channelId": CHANNEL_ID, "maxResults": 10], encoding: URLEncoding.default, headers: nil).responseJSON {(response) in
         print(response)
      
         if let JSON = response.result.value {
@@ -57,6 +57,9 @@ class VideoModel: NSObject {
             }
         }
     }
+    
+    
+    
     
     /*func getVideos() -> [Video] { //this function returns the video type which the class we declared in video.swift file
         var videos = [Video]()  //here im creating new instance of the class which is actual video type object

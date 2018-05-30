@@ -17,12 +17,16 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
     var videos: [Video] = [Video]()
     var selectedVideo: Video?
     var model: VideoModel = VideoModel()
-    /*Search bar
-    var searchController = UISearchController()
-    var resultController = UITableViewController()
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredArr = [Video]()
     
-    //Search bar array
-    var filteredArray = [Video]()*/
+    func filterContentForSearch(searchText: String, scope: String = "All"){
+        filteredArr = videos.filter({ (video) in
+            return video.videoTitle.contains(searchText)
+        })
+        tableView.reloadData()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +36,13 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        /*searchController = UISearchController(searchResultsController: resultController)
-        tableView.tableHeaderView = searchController.searchBar
         searchController.searchResultsUpdater = self
-        resultController.tableView.delegate = self
-        resultController.tableView.dataSource = self*/
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
         
     }
+    
     
     func dataReady() {
         
@@ -49,16 +53,7 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         self.tableView.reloadData()
     }
     
-    /*func updateSearchResults(for searchController: UISearchController) {
-        filteredArray = videos.filter({ (video: String)  -> Bool in
-        if videos.contains(searchController.searchBar.text) {
-            return true
-            }
-            else{
-            return false
-            }
-        })
-    }*/
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //Calculate height of row by getting width of screen
@@ -67,23 +62,32 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if searchController.isActive && searchController.searchBar.text != nil{
+            return filteredArr.count
+        }
         return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "basicCell")!
-        
         //let videoTitle = videos[indexPath.row].videoTitle
-        
+        var res: Video
         //let label = cell.viewWithTag(2) as! UILabel
         //label.text = videoTitle
         
         //customize the cell to display video title
-        //cell.textLabel?.text = videoTitle
+        //cell.textLabel?.text = videos[indexPath.row].videoTitle
         
+        if searchController.isActive && searchController.searchBar.text != nil{
+            res = filteredArr[indexPath.row]
+        }
+        else{
+         res = videos[indexPath.row]
+        }
         //construct videothumnail url
         let videoThumbnailUrlString = videos[indexPath.row].videoThumbNailUrl
+        cell.textLabel?.text = videos[indexPath.row].videoTitle
         
         //NSURL object
         let videoThumbNailUrl = URL(string: videoThumbnailUrlString)
@@ -109,7 +113,11 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Take note when user selects a video in a row
-        self.selectedVideo = self.videos[indexPath.row]
+        if searchController.isActive && searchController.searchBar.text != nil{
+            self.selectedVideo = self.filteredArr[indexPath.row]
+        }else{
+          self.selectedVideo = self.videos[indexPath.row]
+        }
         
         self.performSegue(withIdentifier: "videoSegue", sender: self)
         //let videoLauncher = VideoLauncher()
@@ -127,5 +135,12 @@ class SecondViewController: UIViewController, GIDSignInUIDelegate, UITableViewDe
         navigationController?.dismiss(animated: true, completion: nil) //come back to main viewcontroller
         print("User has Logged Out")
     }
-    
+
 }
+
+extension SecondViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearch(searchText: searchController.searchBar.text!)
+    }
+}
+
